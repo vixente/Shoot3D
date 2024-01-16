@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dflrj4x7d3jei"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_l6r8k"]
-[ext_resource type="ArrayMesh" uid="uid://cxqsdec2224an" path="res://Modelos/Armas/Pistol_Compact_West.obj" id="2_us5qi"]
+[ext_resource type="PackedScene" uid="uid://ioh1yqcxsss3" path="res://Escenas/arma.tscn" id="2_j5cqx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktn0d"]
 
@@ -14,13 +14,14 @@ shape = SubResource("CapsuleShape3D_ktn0d")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+current = true
+fov = 90.0
+near = 0.01
+far = 1000.0
 
-[node name="Arma" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221437, -0.225032, -0.381014)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/Arma"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0810864, 0.0815774, 0.124147)
-mesh = ExtResource("2_us5qi")
+[node name="Arma" parent="Camera3D" node_paths=PackedStringArray("camara") instance=ExtResource("2_j5cqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112083, -0.0870893, -0.152561)
+camara = NodePath("..")
 
 [node name="ArmaCSG" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.329495, 0, -0.774526)

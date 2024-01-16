@@ -2,8 +2,9 @@ extends CharacterBody3D
 
 @export_category("Propiedades del jugador")
 @export var SPEED : int = 15.0
-@export_range(3,10) var JUMP_VELOCITY : int = 5
+@export_range(3,10) var JUMP_VELOCITY : int = 9
 @export_range(0.001, 0.005) var mouse_sensitivity : float = 0.001
+var factor_velocidad : int = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,8 +27,8 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * SPEED * factor_velocidad
+		velocity.z = direction.z * SPEED * factor_velocidad
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -42,3 +43,8 @@ func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().quit()
+		if Input.is_action_pressed("correr"):
+			if factor_velocidad == 1:
+				factor_velocidad = 2
+		else:
+			factor_velocidad = 1

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ioh1yqcxsss3"]
+
+[ext_resource type="ArrayMesh" uid="uid://cxqsdec2224an" path="res://Modelos/Armas/Pistol_Compact_West.obj" id="1_ht1p2"]
+[ext_resource type="Script" path="res://Escenas/arma.gd" id="1_u8ipj"]
+
+[node name="Arma" type="Node3D"]
+script = ExtResource("1_u8ipj")
+array_posiciones = PackedVector3Array(0, 0.0251977, -0.129366, 0, 0.0251977, -0.148159, 0, 0.0155253, -0.353291, 0, 0.0130222, -0.466204, 0, 0.0130222, -0.388864, 0, 0.0282522, -0.300964, 0, 0.0131064, -0.195761, 0, 0.0172855, -0.232865, 0, 0.0172855, -0.655366, 0, 0.0172855, -0.560939)
+metadata/_edit_pinned_properties_ = [&"array_posiciones"]
+
+[node name="MallaArma" type="MeshInstance3D" parent="."]
+layers = 2
+cast_shadow = 0
+gi_mode = 0
+mesh = ExtResource("1_ht1p2")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="PuntoDisparo" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0251977, -0.129366)
