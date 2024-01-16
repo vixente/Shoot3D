@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://0cw4svs5kl02"]
+
+[ext_resource type="Texture2D" uid="uid://bb6d1mfu724ou" path="res://Texturas/Prototype/Yellow/tex_1.png" id="1_kkvls"]
+[ext_resource type="Texture2D" uid="uid://bd7hc0ldbb0u4" path="res://Texturas/Prototype/Red/tex_8.png" id="2_pgdqw"]
+[ext_resource type="PackedScene" uid="uid://dnh5oq4lxmk00" path="res://Escenas/Diana.tscn" id="3_cqthk"]
+[ext_resource type="PackedScene" uid="uid://dflrj4x7d3jei" path="res://Escenas/player.tscn" id="3_ldh0x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym57u"]
+albedo_texture = ExtResource("1_kkvls")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a668x"]
+albedo_texture = ExtResource("2_pgdqw")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[node name="Escenario" type="Node3D"]
+
+[node name="Decorado" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Suelo" type="CSGBox3D" parent="Decorado"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.210754, -3.8147e-06, -0.0752563)
+use_collision = true
+size = Vector3(100, 0.2, 100)
+material = SubResource("StandardMaterial3D_ym57u")
+
+[node name="Pared" type="CSGBox3D" parent="Decorado"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -50)
+use_collision = true
+size = Vector3(100, 50, 1)
+material = SubResource("StandardMaterial3D_a668x")
+
+[node name="Obstaculos" type="Node3D" parent="Decorado"]
+
+[node name="Diana" parent="Decorado/Obstaculos" instance=ExtResource("3_cqthk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.6046, 0, -18.3323)
+
+[node name="Diana2" parent="Decorado/Obstaculos" instance=ExtResource("3_cqthk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.525, 1.90735e-06, -16.5285)
+
+[node name="Diana3" parent="Decorado/Obstaculos" instance=ExtResource("3_cqthk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55753, 0.0999947, -16.4533)
+
+[node name="Objetivos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Player" parent="." instance=ExtResource("3_ldh0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.721997, 0.592221, 0.357764, -0.661929, 0.440691, 0.606334, 0.20142, -0.674586, 0.710186, 0, 13, 26)
+shadow_enabled = true

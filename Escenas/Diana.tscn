@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnh5oq4lxmk00"]
+
+[ext_resource type="Texture2D" uid="uid://bjmti1361jpgd" path="res://Texturas/Targets/Diana.jpg" id="1_mblks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qowai"]
+size = Vector3(8, 8, 1)
+
+[node name="Diana" type="StaticBody3D"]
+
+[node name="Soporte" type="CSGBox3D" parent="."]
+size = Vector3(8, 1, 1)
+
+[node name="SP3_Diana" type="Sprite3D" parent="Soporte"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89844, 0)
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_mblks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+shape = SubResource("BoxShape3D_qowai")

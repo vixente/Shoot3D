@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bwb14wtbn8nth"
+path="res://.godot/imported/Shotgun_Pump_West.obj-0aed4c81c58067f3a5be7d32a716dc84.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Shotgun_Pump_West.obj-0aed4c81c58067f3a5be7d32a716dc84.mesh"]
+
+source_file="res://Modelos/Armas/Shotgun_Pump_West.obj"
+dest_files=["res://.godot/imported/Shotgun_Pump_West.obj-0aed4c81c58067f3a5be7d32a716dc84.mesh", "res://.godot/imported/Shotgun_Pump_West.obj-0aed4c81c58067f3a5be7d32a716dc84.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

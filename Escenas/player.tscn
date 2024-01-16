@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dflrj4x7d3jei"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_l6r8k"]
+[ext_resource type="ArrayMesh" uid="uid://cxqsdec2224an" path="res://Modelos/Armas/Pistol_Compact_West.obj" id="2_us5qi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktn0d"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_l6r8k")
+mouse_sensitivity = 0.005
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ktn0d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="Arma" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221437, -0.225032, -0.381014)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/Arma"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0810864, 0.0815774, 0.124147)
+mesh = ExtResource("2_us5qi")
+
+[node name="ArmaCSG" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.329495, 0, -0.774526)
+visible = false
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Camera3D/ArmaCSG"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0597214, -0.297033, 0.325058)
+cast_shadow = 0
+radius = 0.05
+height = 0.3
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Camera3D/ArmaCSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067857, -0.288575, 0.429068)
+cast_shadow = 0
+size = Vector3(0.12, 0.1, 0.1)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Camera3D/ArmaCSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0597424, -0.224718, 0.209655)
+cast_shadow = 0
+radius = 0.02
+height = 0.05
+cone = true

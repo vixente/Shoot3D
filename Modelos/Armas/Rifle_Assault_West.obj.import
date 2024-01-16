@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://i58btce5y0d0"
+path="res://.godot/imported/Rifle_Assault_West.obj-c5ee994a32358338f59704dc8c127e10.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rifle_Assault_West.obj-c5ee994a32358338f59704dc8c127e10.mesh"]
+
+source_file="res://Modelos/Armas/Rifle_Assault_West.obj"
+dest_files=["res://.godot/imported/Rifle_Assault_West.obj-c5ee994a32358338f59704dc8c127e10.mesh", "res://.godot/imported/Rifle_Assault_West.obj-c5ee994a32358338f59704dc8c127e10.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
