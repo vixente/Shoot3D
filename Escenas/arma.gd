@@ -30,7 +30,10 @@ func _physics_process(delta):
 		var result = space_state.intersect_ray(query)
 		if !result.is_empty():
 			impacto = result.position
-			dispara_proyectil()
+			if impacto:
+				print(impacto)
+			dibuja_proyectil()
+			#dispara_proyectil()
 			hay_disparo = false
 
 func dispara_proyectil():
@@ -40,3 +43,20 @@ func dispara_proyectil():
 	var direccion = (impacto - $Bocacha.get_global_transform().origin).normalized()
 	nuevo_proyectil.set_linear_velocity(direccion * 5)
 	
+func dibuja_proyectil():
+	if origen && impacto:
+		var malla = MeshInstance3D.new()
+		var linea = ImmediateMesh.new()
+		linea.surface_begin(Mesh.PRIMITIVE_LINES)
+		linea.surface_set_color(Color.AQUA)
+		linea.surface_add_vertex($Bocacha.get_global_transform().origin)
+		linea.surface_add_vertex(impacto)
+		linea.surface_end()
+		malla.mesh = linea
+		owner.add_child(malla)
+		print($Bocacha.get_global_transform().origin, impacto)
+
+
+
+
+
