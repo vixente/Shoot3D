@@ -1,37 +1,42 @@
-extends Node3D
+extends MeshInstance3D
 
-@export var recoil : int = 5
-@export var munifa : int = 15
-@export var array_posiciones : PackedVector3Array
-@export var camara : Camera3D
-var proyectil = preload("res://Escenas/bala.tscn")
-
-var Lista_Modelos_Armas = []
+var hay_disparo : bool = false
+var rango_arma : float = 1000.0
+@export var proyectil : PackedScene
+var camara : Camera3D
+var viewport : Viewport
+var mirilla : Vector2
+var impacto : Vector3
+var origen : Vector3
+var destino : Vector3
 
 func _ready():
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Pistol_Compact_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Pistol_Full_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Rifle_Assault_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Rifle_Battle_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Shotgun_Auto_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Shotgun_Pump_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/SMG_Compact_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/SMG_Full_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Sniper_Material_West.obj" ) )
-	Lista_Modelos_Armas.append( preload("res://Modelos/Armas/Sniper_Rifle_West.obj" ) )
-	pass
+	camara = get_viewport().get_camera_3d()
+	viewport = get_viewport()
+	mirilla = viewport.get_size()/2
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if Input.is_action_just_pressed("Disparo"):
-			var nuevo_proyectil : Bala = proyectil.instantiate()
-			nuevo_proyectil.camara = camara
-			print(get_tree().get_root().name)
-			get_tree().get_root().add_child(nuevo_proyectil)
 	if event is InputEventKey:
-		if Input.is_action_just_pressed("reload"):
-			pass
-			# Reload
-		if Input.is_action_just_pressed("Apuntar"):
-			pass
-			
+		if Input.is_action_just_pressed("Disparo"):
+			hay_disparo = true
+
+
+func _physics_process(delta):
+	if hay_disparo == true:
+		origen = camara.project_ray_origin(mirilla)
+		destino = origen + camara.project_ray_normal(mirilla) * rango_arma
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(origen,destino)
+		var result = space_state.intersect_ray(query)
+		if !result.is_empty():
+			impacto = result.position
+			dispara_proyectil()
+			hay_disparo = false
+
+func dispara_proyectil():
+	var nuevo_proyectil = proyectil.instantiate()
+	owner.add_child(nuevo_proyectil)
+	nuevo_proyectil.get_global_transform().origin = origen	
+	var direccion = (impacto - $Bocacha.get_global_transform().origin).normalized()
+	nuevo_proyectil.set_linear_velocity(direccion * 5)
+	

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export_category("Propiedades del jugador")
-@export var SPEED : int = 15.0
+@export var SPEED : float = 15.0
 @export_range(3,10) var JUMP_VELOCITY : int = 9
 @export_range(0.001, 0.005) var mouse_sensitivity : float = 0.001
 var factor_velocidad : int = 1

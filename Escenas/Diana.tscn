@@ -6,6 +6,8 @@
 size = Vector3(8, 8, 1)
 
 [node name="Diana" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 15
 
 [node name="Soporte" type="CSGBox3D" parent="."]
 size = Vector3(8, 1, 1)

@@ -1,0 +1,5 @@
+CSGMesh3D
+CollisionShape3D
+RigidBody3D
+Marker3D
+MeshInstance3D
