@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bjmti1361jpgd" path="res://Texturas/Targets/Diana.jpg" id="1_mblks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qowai"]
-size = Vector3(8, 8, 1)
+size = Vector3(8, 8, 1.5)
 
 [node name="Diana" type="StaticBody3D"]
 collision_layer = 4

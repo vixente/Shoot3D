@@ -15,33 +15,26 @@ func _ready():
 	viewport = get_viewport()
 	mirilla = viewport.get_size()/2
 
-func _input(event):
-	if event is InputEventKey:
-		if Input.is_action_just_pressed("Disparo"):
-			hay_disparo = true
+#func _input(event):
+
 
 
 func _physics_process(delta):
-	if hay_disparo == true:
-		origen = camara.project_ray_origin(mirilla)
-		destino = origen + camara.project_ray_normal(mirilla) * rango_arma
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(origen,destino)
-		var result = space_state.intersect_ray(query)
-		if !result.is_empty():
-			impacto = result.position
-			if impacto:
-				print(impacto)
-			dibuja_proyectil()
-			#dispara_proyectil()
-			hay_disparo = false
+	if Input.is_action_just_pressed("Disparo"):
+		dispara_proyectil()
+
 
 func dispara_proyectil():
-	var nuevo_proyectil = proyectil.instantiate()
-	owner.add_child(nuevo_proyectil)
-	nuevo_proyectil.get_global_transform().origin = origen	
-	var direccion = (impacto - $Bocacha.get_global_transform().origin).normalized()
-	nuevo_proyectil.set_linear_velocity(direccion * 5)
+	var nuevo_proyectil = proyectil.instantiate()	
+	nuevo_proyectil.global_position = $Bocacha.global_position
+	nuevo_proyectil.global_basis = $Bocacha.global_basis
+	nuevo_proyectil.camara = camara
+	$Bocacha.add_child(nuevo_proyectil)
+	nuevo_proyectil.reparent(get_tree().get_root(),true)
+
+	print(nuevo_proyectil.global_position)
+	print($Bocacha.global_position)
+
 	
 func dibuja_proyectil():
 	if origen && impacto:

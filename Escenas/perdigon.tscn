@@ -3,11 +3,13 @@
 [ext_resource type="Script" path="res://Perdigon.gd" id="1_jgkj0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bsept"]
-radius = 0.6
+radius = 0.12
 
 [sub_resource type="SphereMesh" id="SphereMesh_00741"]
-radial_segments = 8
-rings = 4
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5q87"]
 albedo_color = Color(1, 0.0705882, 1, 1)
@@ -16,6 +18,7 @@ albedo_color = Color(1, 0.0705882, 1, 1)
 top_level = true
 collision_layer = 8
 collision_mask = 14
+input_ray_pickable = false
 script = ExtResource("1_jgkj0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
