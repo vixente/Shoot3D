@@ -1,23 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnh5oq4lxmk00"]
+[gd_scene load_steps=4 format=3 uid="uid://dnh5oq4lxmk00"]
 
 [ext_resource type="Texture2D" uid="uid://bjmti1361jpgd" path="res://Texturas/Targets/Diana.jpg" id="1_mblks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qowai"]
-size = Vector3(8, 8, 1.5)
-
-[node name="Diana" type="StaticBody3D"]
-collision_layer = 4
-collision_mask = 15
-
-[node name="Soporte" type="CSGBox3D" parent="."]
 size = Vector3(8, 1, 1)
 
-[node name="SP3_Diana" type="Sprite3D" parent="Soporte"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jmq8c"]
+size = Vector3(7, 6.92, 0.2)
+
+[node name="Diana" type="Node3D"]
+
+[node name="SB_Soporte" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CSG_Soporte" type="CSGBox3D" parent="SB_Soporte"]
+size = Vector3(8, 1, 1)
+
+[node name="CS_Soporte" type="CollisionShape3D" parent="SB_Soporte"]
+shape = SubResource("BoxShape3D_qowai")
+
+[node name="SB_Diana" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89844, 0)
+collision_layer = 16
+collision_mask = 31
+
+[node name="CS_Diana" type="CollisionShape3D" parent="SB_Diana"]
+shape = SubResource("BoxShape3D_jmq8c")
+
+[node name="SP3_Diana" type="Sprite3D" parent="SB_Diana"]
 shaded = true
 texture_filter = 0
 texture = ExtResource("1_mblks")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
-shape = SubResource("BoxShape3D_qowai")

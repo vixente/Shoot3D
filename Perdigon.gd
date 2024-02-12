@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-var speed = 40
+var speed = 100
 var direccion : Vector3 = Vector3.FORWARD
 var camara : Camera3D
 
@@ -12,3 +12,7 @@ func _ready():
 	else:
 		push_error("Sin camara :(")
 
+func _physics_process(delta):
+	if position.distance_to(camara.position) > 100:
+		queue_free()
+		

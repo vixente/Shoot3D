@@ -1,7 +1,7 @@
-res://Escenas/perdigon.tscn
-res://Escenas/Arma.gd
-res://Perdigon.gd
-res://Escenas/Escenario.tscn
 res://Escenas/player.tscn
+res://Escenas/Arma.gd
+res://Escenas/Escenario.tscn
 res://Escenas/Arma.tscn
+res://Escenas/perdigon.tscn
 res://Escenas/Diana.tscn
+res://Perdigon.gd

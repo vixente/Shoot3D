@@ -1,5 +1,9 @@
+Sprite3D
+TextureRect
+Node3D
+CollisionShape3D
+StaticBody3D
 MeshInstance3D
 CSGMesh3D
-CollisionShape3D
 RigidBody3D
 Marker3D
